@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import appConfig from "../config/config.services.js";
 
-
-
 export const connectDB = async()=>{
     try{
        console.log('⏳ Connecting to the database...');
