@@ -1,8 +1,8 @@
 import { app } from "./app.js";
+import appConfig from "./config/config.services.js";
 
-
-await app.listen(3000,()=>{
-    console.log("the server is running on port 3000......")
+await app.listen(appConfig.port,()=>{
+    console.log(`Server started successfully on port ${appConfig.port}`)
 })
 
 
