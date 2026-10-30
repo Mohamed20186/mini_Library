@@ -27,3 +27,7 @@ export const deleteBorrowService = (id) => {
 export const countBorrowsService = (filter) => {
   return borr.countBorrows(filter);
 };
+
+export const addBulkBorrowsService = (data) => {
+  return borr.addBulkBorrows(data);
+};

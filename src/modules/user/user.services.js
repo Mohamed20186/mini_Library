@@ -27,3 +27,7 @@ export const deleteUserService = (id) => {
 export const countUsersService = (filter) => {
   return ur.countUsers(filter);
 };
+
+export const addBulkUsersService = (data) => {
+  return ur.addBulkUsers(data);
+};

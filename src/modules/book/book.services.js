@@ -27,3 +27,7 @@ export const deleteBookService = (id) => {
 export const countBooksService = (filter) => {
   return bk.countBooks(filter);
 };
+
+export const addBulkBooksService = (data) => {
+  return bk.addBulkBooks(data);
+};

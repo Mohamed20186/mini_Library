@@ -23,3 +23,7 @@ export const deleteAuthorService = (id) => {
 export const countAuthorsService = (filter) => {
   return ar.countAuthors(filter);
 };
+
+export const addBulkAuthorsService = (data) => {
+  return ar.addBulkAuthors(data);
+};
