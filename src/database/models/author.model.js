@@ -31,6 +31,8 @@ const authorSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    toObject : {vertual : true} , 
+    toJSON : {vertual : true}
   },
 );
 
