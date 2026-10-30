@@ -63,3 +63,6 @@ favoriteBooks: [{
     toObject: { vertual: true },
     toJSON: { vertual: true },
 });
+
+
+export const userModel = mongoose.model("user", bookSchema);
