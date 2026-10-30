@@ -4,8 +4,13 @@ export const create = async (model, data) => {
   return await model.create(data);
 };
 
-export const find = async (model) => {
-  return await model.find();
+export const find = async (model, options = {} ) => {
+    const {
+        page = 1,
+        limit = 10
+    } = options;
+    const skip = (page - 1 ) * limit ;
+   return model.find().skip(skip).limit(limit);
 };
 
 export const findOne = async (model, filter = {}) => {
