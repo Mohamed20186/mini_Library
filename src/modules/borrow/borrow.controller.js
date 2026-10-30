@@ -20,6 +20,15 @@ borrowRouter.post('/', async (req, res, next)=>{
     }
 });
 
+borrowRouter.post('/bulk', async (req, res, next)=>{
+    try {
+        const borrows = await createBorrowService(req.body);
+        return response(res, borrows, "Borrows created successfully", 201);
+    } catch (err) {
+        next(err);
+    }
+});
+
 borrowRouter.get('/', async (req, res, next)=>{
     try {
         const { page, limit } = req.query;

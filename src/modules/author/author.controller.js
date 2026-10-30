@@ -5,7 +5,8 @@ import {
   getAuthorByIdService,
   updateAuthorService,
   deleteAuthorService,
-  countAuthorsService, 
+  countAuthorsService,
+  addBulkAuthorsService, 
 } from "./author.services.js";
 import { response } from "../../common/utils/response.js";
 
@@ -15,6 +16,14 @@ authorRouter.post('/', async (req, res, next)=>{
     try {
         const author = await createAuthorService(req.body);
         return response(res, author, "Author created successfully", 201);
+    } catch (err) {
+        next(err);
+    }
+});
+authorRouter.post('/bulk', async (req, res, next)=>{
+    try {
+        const authors = await addBulkAuthorsService(req.body);
+        return response(res, authors, "Authors created successfully", 201);
     } catch (err) {
         next(err);
     }

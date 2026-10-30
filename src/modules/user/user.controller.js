@@ -6,6 +6,7 @@ import {
   updateUserService,
   deleteUserService,
   countUsersService,
+  addBulkUsersService,
 } from "./user.services.js";
 import { response } from "../../common/utils/response.js";
 
@@ -15,6 +16,15 @@ userRouter.post('/', async (req, res, next)=>{
     try {
         const user = await createUserService(req.body);
         return response(res, user, "User created successfully", 201);
+    } catch (err) {
+        next(err);
+    }
+});
+
+userRouter.post('/bulk', async (req, res, next)=>{
+    try {
+        const users = await addBulkUsersService(req.body);
+        return response(res, users, "User created successfully", 201);
     } catch (err) {
         next(err);
     }

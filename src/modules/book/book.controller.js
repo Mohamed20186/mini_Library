@@ -6,6 +6,7 @@ import {
   updateBookService,
   deleteBookService,
   countBooksService,
+  addBulkBooksService,
 } from "./book.services.js";
 import { response } from "../../common/utils/response.js";
 
@@ -15,6 +16,15 @@ bookRouter.post('/', async (req, res, next)=>{
     try {
         const book = await createBookService(req.body);
         return response(res, book, "Book created successfully", 201);
+    } catch (err) {
+        next(err);
+    }
+});
+
+bookRouter.post('/bulk', async (req, res, next)=>{
+    try {
+        const books = await addBulkBooksService(req.body);
+        return response(res, books, "Books created successfully", 201);
     } catch (err) {
         next(err);
     }
