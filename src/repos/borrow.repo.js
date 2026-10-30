@@ -1,47 +1,30 @@
-const mongoose = require('mongoose');
+import { borrowModel } from "../database/models/borrow.model.js";
+import * as br from "./base.repo.js";
 
-const borrowSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: [true, 'User is required'] 
-  },
-  book: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'book',
-    required: [true, 'Book is required'] 
-  },
-  borrowedAt: {
-    type: Date,
-    default: Date.now 
-  },
-  dueDate: {
-    type: Date,
-    required: [true, 'Due date is required'], 
-    validate: {
-      validator: function(value) {
-        
-        return value > this.borrowedAt;
-      },
-      message: 'Due date must be after borrowed date'
-    }
-  },
-  returnedAt: {
-    type: Date 
-  },
-  status: {
-    type: String,
-    enum: ['borrowed', 'returned', 'overdue'] 
-  },
-  fine: {
-    type: Number,
-    default: 0,
-    min: [0, 'Fine cannot be negative'] 
-  }
-}, {
-  timestamps: true
-});
+export const createBorrow = async (data)=>{
+    return await br.create(borrowModel, data);
+}
 
-const Borrow = mongoose.model('borrow', borrowSchema);
+export const findBorrow = async (options)=>{
+    return await br.find(borrowModel, options);
+}
 
-module.exports = Borrow;
+export const findOneBorrow = async (filter)=>{
+    return await br.findOne(borrowModel, filter);
+}
+
+export const findBorrowById = async (id)=>{
+    return await br.findById(borrowModel, id);
+}
+
+export const updateBorrowById = async (id, data)=>{
+    return await br.updateById(borrowModel, id, data);
+}
+
+export const deleteBorrowById = async (id)=>{
+    return await br.deleteById(borrowModel, id);
+}
+
+export const countBorrows = async (filter)=>{
+    return await br.count(borrowModel, filter);
+}
