@@ -1,15 +1,66 @@
 import { Router } from "express";
-import { createAuthorService } from "./author.services.js";
+import {
+  createAuthorService,
+  getAuthorsService,
+  getAuthorByIdService,
+  updateAuthorService,
+  deleteAuthorService,
+} from "./author.services.js";
 import { response } from "../../common/utils/response.js";
-
 
 export const authorRouter = Router();
 
-authorRouter.post('/', async(req , res , next)=>{
-    try{
-    const author = await createAuthorService(req.body);
-    return response(res,author,"Author created successfully",201)
-    }catch(err){
-       next(err)
+authorRouter.post('/', async (req, res, next)=>{
+    try {
+        const author = await createAuthorService(req.body);
+        return response(res, author, "Author created successfully", 201);
+    } catch (err) {
+        next(err);
     }
-})
+});
+
+authorRouter.get('/', async (req, res, next)=>{
+    try {
+        const { page, limit } = req.query;
+        const authors = await getAuthorsService({ page, limit });
+        return response(res, authors, "Authors fetched successfully");
+    } catch (err) {
+        next(err);
+    }
+});
+
+authorRouter.get('/:id', async (req, res, next)=>{
+    try {
+        const author = await getAuthorByIdService(req.params.id);
+        if (!author) {
+            return response(res, null, "Author not found", 404);
+        }
+        return response(res, author, "Author fetched successfully");
+    } catch (err) {
+        next(err);
+    }
+});
+
+authorRouter.put('/:id', async (req, res, next)=>{
+    try {
+        const author = await updateAuthorService(req.params.id, req.body);
+        if (!author) {
+            return response(res, null, "Author not found", 404);
+        }
+        return response(res, author, "Author updated successfully");
+    } catch (err) {
+        next(err);
+    }
+});
+
+authorRouter.delete('/:id', async (req, res, next)=>{
+    try {
+        const author = await deleteAuthorService(req.params.id);
+        if (!author) {
+            return response(res, null, "Author not found", 404);
+        }
+        return response(res, author, "Author deleted successfully");
+    } catch (err) {
+        next(err);
+    }
+});
