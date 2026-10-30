@@ -4,3 +4,4 @@ import { create } from "./base.repo.js";
 export const createAuthor = async (data)=>{
     return await create(authorModel,data);
 }
+
