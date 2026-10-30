@@ -5,6 +5,7 @@ import {
   getAuthorByIdService,
   updateAuthorService,
   deleteAuthorService,
+  countAuthorsService, 
 } from "./author.services.js";
 import { response } from "../../common/utils/response.js";
 
@@ -24,6 +25,15 @@ authorRouter.get('/', async (req, res, next)=>{
         const { page, limit } = req.query;
         const authors = await getAuthorsService({ page, limit });
         return response(res, authors, "Authors fetched successfully");
+    } catch (err) {
+        next(err);
+    }
+});
+
+authorRouter.get('/count', async (req, res, next)=>{
+    try {
+        const count = await countAuthorsService(req.query);
+        return response(res, { count }, "Authors count fetched successfully");
     } catch (err) {
         next(err);
     }
