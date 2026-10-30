@@ -6,7 +6,7 @@ import {
   updateBorrowService,
   deleteBorrowService,
   countBorrowsService,
-} from "./borrow.service.js";
+} from "./borrow.services.js";
 import { response } from "../../common/utils/response.js";
 
 export const borrowRouter = Router();

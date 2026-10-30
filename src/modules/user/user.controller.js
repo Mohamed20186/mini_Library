@@ -6,7 +6,7 @@ import {
   updateUserService,
   deleteUserService,
   countUsersService,
-} from "./user.service.js";
+} from "./user.services.js";
 import { response } from "../../common/utils/response.js";
 
 export const userRouter = Router();

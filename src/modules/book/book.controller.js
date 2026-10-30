@@ -6,7 +6,7 @@ import {
   updateBookService,
   deleteBookService,
   countBooksService,
-} from "./book.service.js";
+} from "./book.services.js";
 import { response } from "../../common/utils/response.js";
 
 export const bookRouter = Router();

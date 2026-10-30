@@ -1,68 +1,94 @@
+
 import mongoose from "mongoose";
 import { role } from "../../common/enums/roles.js";
 
-const userSchema = new mongoose.Schema({
-    firstName : {
-        trype : String , 
-      required: [true, "first Name is required"],
-      tirm : true
+const userSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: [true, "First name is required"],
+      trim: true,
     },
-    lastName : {
-        trype : String , 
-        required: [true, "last Name is required"],
-       tirm : true
+
+    lastName: {
+      type: String,
+      required: [true, "Last name is required"],
+      trim: true,
     },
-    email : {
-        required: [true, "email is required"],
-        unique : true,
-        lowercase : true ,
-        match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+
+    email: {
+      type: String,
+      required: [true, "Email is required"],
+      unique: true,
+      lowercase: true,
+      trim: true,
+      match: [
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+        "Please fill a valid email address",
+      ],
     },
+
     password: {
-    type: String,
-    required: [true, 'Password is required'],
-    minlength: [8, 'Password must be at least 8 characters'],
-    select: false ,
-  },
-  phone: {
-    type: String,
-    match: [/^(01)[0125][0-9]{8}$/, 'Please enter a valid Egyptian phone number'] 
-  },
-  age: {
-    type: Number,
-    min: [12, 'Age must be at least 12'],
-    max: [100, 'Age cannot exceed 100']
-  },
-  role: {
-    type: String,
-    enum: Object.values(role),
-    default: role.member
-  },
-  address: {
-    city: {
       type: String,
-      trim: true
+      required: [true, "Password is required"],
+      minlength: [8, "Password must be at least 8 characters"],
+      select: false,
     },
-    street: {
+
+    phone: {
       type: String,
-      trim: true
-    }
-  },
-favoriteBooks: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'book' 
-  }],
-  isActive: {
-    type: Boolean,
-    default: true
-  },
+      match: [
+        /^(01)[0125][0-9]{8}$/,
+        "Please enter a valid Egyptian phone number",
+      ],
+    },
 
+    age: {
+      type: Number,
+      min: [12, "Age must be at least 12"],
+      max: [100, "Age cannot exceed 100"],
+    },
 
-},{
+    role: {
+      type: String,
+      enum: Object.values(role),
+      default: role.member,
+    },
+
+    address: {
+      city: {
+        type: String,
+        trim: true,
+      },
+      street: {
+        type: String,
+        trim: true,
+      },
+    },
+
+    favoriteBooks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "book",
+      },
+    ],
+
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
     timestamps: true,
-    toObject: { vertual: true },
-    toJSON: { vertual: true },
-});
 
+    toObject: {
+      virtuals: true,
+    },
 
-export const userModel = mongoose.model("user", bookSchema);
+    toJSON: {
+      virtuals: true,
+    },
+  },
+);
+
+export const userModel = mongoose.model("user", userSchema);

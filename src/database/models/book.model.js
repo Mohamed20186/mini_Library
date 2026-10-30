@@ -32,19 +32,19 @@ const bookSchema = new mongoose.Schema(
       minLength: [2, "Name must be at least 2 characters"],
     },
     isbn: {
-      trpe: String,
+      type: String,
       immutable: true,
       required: [true, "ISBN field is required"],
       unique: true,
       match: [/^\d{13}$/, "Please fill a valid 13-digit ISBN"],
     },
     auther: {
-      trpe: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "author",
       required: [true, "auther field is required"],
     },
     genres: {
-      type: String,
+      type: Number,
       enum: [Object.values(genresEnum)],
       required: [true, "genres field is required"],
       validate: {

@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from "mongoose";
 const borrowSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -44,5 +43,5 @@ const borrowSchema = new mongoose.Schema({
     toJSON: { vertual: true },
 });
 
-export const Borrow = mongoose.model('borrow', borrowSchema);
+export const borrowModel = mongoose.model('borrow', borrowSchema);
 
