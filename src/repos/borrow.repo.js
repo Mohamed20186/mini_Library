@@ -28,3 +28,7 @@ export const deleteBorrowById = async (id)=>{
 export const countBorrows = async (filter)=>{
     return await br.count(borrowModel, filter);
 }
+
+export const addBulkBorrows = async (data)=>{
+    return await br.addBulk(borrowModel,data);
+}

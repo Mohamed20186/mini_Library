@@ -28,3 +28,7 @@ export const deleteUserById = async (id)=>{
 export const countUsers = async (filter)=>{
     return await br.count(userModel, filter);
 }
+
+export const addBulkUsers = async (data)=>{
+    return await br.addBulk(userModel,data);
+}

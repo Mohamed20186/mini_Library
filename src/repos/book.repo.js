@@ -28,3 +28,7 @@ export const deleteBookById = async (id)=>{
 export const countBooks = async (filter)=>{
     return await br.count(bookModel, filter);
 }
+
+export const addBulkBooks = async (data)=>{
+    return await br.addBulk(bookModel,data);
+}

@@ -32,6 +32,10 @@ export const deleteById = async (model , id) =>{
       return await model.findByIdAndDelete(id);
 }
 
-export const count = (model, filter = {}) => {
-    return model.countDocuments(filter);
+export const count = async (model, filter = {}) => {
+    return await model.countDocuments(filter);
 };
+
+export const bulk = async (model,data) =>{
+   return await model.insertMany(data); 
+}
